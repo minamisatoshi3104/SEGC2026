@@ -19,6 +19,13 @@ public partial class InGameScene
 
         public override void OnUpdate()
         {
+            // 接続が切れたらタイトルへ戻る
+            if (GameManager.Instance.NetworkManager.State == NetworkManager.NetworkState.Disconnected)
+            {
+                GameManager.Instance.SetNextScene("Title");
+                _stateMachine.ChangeState<ExitState>();
+            }
+            // ステート変更
             var scene = _stateMachine.Owner as InGameScene;
             switch (scene._inGameController.NextState)
             {
