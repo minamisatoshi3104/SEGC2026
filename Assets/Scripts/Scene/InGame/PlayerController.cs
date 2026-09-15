@@ -1,10 +1,11 @@
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
 /// ÉvÉåÉCÉÑÅ[êßå‰
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPunCallbacks
 {
     /// <summary>
     /// èÛë‘
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (_move != null)
+        if (_move != null && photonView.IsMine)
         {
             Vector2 value = _move.ReadValue<Vector2>();
             Move(value);
