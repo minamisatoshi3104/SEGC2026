@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8476707686486915321}
   - component: {fileID: 6556170690692927136}
+  - component: {fileID: 7730316875523201026}
+  - component: {fileID: 7951906124937953150}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,7 +47,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f002334477d064c479171be922dc36ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.GameManager
-  SOGameData: {fileID: 0}
+  SOGameData: {fileID: 11400000, guid: 99434cbd75c1be5459ff1d514e1a709e, type: 2}
+--- !u!114 &7730316875523201026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3053471712226370665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f022b160cbf467d4fb4533b6cf8f24b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NetworkManager
+--- !u!114 &7951906124937953150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3053471712226370665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c294df6ff3c7b4992f4413c251e39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveDataManager
 --- !u!1 &5720904921421844885
 GameObject:
   m_ObjectHideFlags: 0

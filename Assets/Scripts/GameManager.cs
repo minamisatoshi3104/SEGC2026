@@ -17,13 +17,18 @@ namespace Game
         public string PrevSceneName { get; private set; }
         private string _nextSceneName;
 
-        // ゲーム中のデータ
-        public GameData GameData { get; private set; } = new GameData();
-        public class UpdateGameDataEvent : UnityEvent<GameData> { }
+        // イベント
+        public class UpdateGameDataEvent : UnityEvent<SaveData> { }
         public UpdateGameDataEvent OnUpdateGameData = new UpdateGameDataEvent();
 
         // SOData
         public SOGameData SOGameData;
+
+        // 管理クラス
+        private NetworkManager _networkManager;
+        private SaveDataManager _saveDataManager;
+        public NetworkManager NetworkManager => _networkManager;
+        public SaveDataManager SaveDataManager => _saveDataManager;
 
         void Awake()
         {
@@ -35,13 +40,19 @@ namespace Game
             else if (Instance != this)
             {
                 Destroy(gameObject);
+                return;
             }
-            Load();
+            // コンポーネント取得
+            _networkManager = GetComponent<NetworkManager>();
+            _saveDataManager = GetComponent<SaveDataManager>();
+            // セーブデータ読み込み
+            _saveDataManager.Load();
         }
 
         private void OnDestroy()
         {
-            Save();
+            // セーブデータ保存
+            _saveDataManager.Save();
         }
 
         /// <summary>
@@ -60,39 +71,6 @@ namespace Game
         {
             PrevSceneName = _nextSceneName;
             SceneManager.LoadScene(_nextSceneName);
-        }
-
-        /// <summary>
-        /// セーブ
-        /// </summary>
-        private void Save()
-        {
-            //PlayerPrefs.SetInt("Score", GameData.Score);
-            PlayerPrefs.Save();
-        }
-
-        /// <summary>
-        /// ロード
-        /// </summary>
-        private void Load()
-        {
-            //GameData.Score = PlayerPrefs.GetInt("Score", 0);
-        }
-    }
-
-    /// <summary>
-    /// ゲーム中のデータ
-    /// </summary>
-    public class GameData
-    {
-        //public int Score { get; set; }
-
-        /// <summary>
-        /// リセット
-        /// </summary>
-        public void Reset()
-        {
-            //Score = 0;
         }
     }
 }

@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
-/// プレイヤーモデル制御
+/// プレイヤー制御
 /// </summary>
-public class UnitPlayer : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     /// <summary>
     /// 状態
@@ -19,10 +20,16 @@ public class UnitPlayer : MonoBehaviour
 
     [SerializeField] private float _forceRate = 1f; // 加速度の倍率
 
+    private InputAction _move; // 移動
     private Animator _animator;    // アニメーター
     private Rigidbody _rigidbody;
 
     private State _currentState = State.Idle;   // 現在の状態
+
+    private void Awake()
+    {
+        _move = InputSystem.actions.FindAction("Move");
+    }
 
     void Start()
     {
@@ -30,9 +37,23 @@ public class UnitPlayer : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();    
     }
 
+    private void OnEnable()
+    {
+        _move?.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _move?.Disable();
+    }
+
     void Update()
     {
-        
+        if (_move != null)
+        {
+            Vector2 value = _move.ReadValue<Vector2>();
+            Move(value);
+        }
     }
 
     /// <summary>

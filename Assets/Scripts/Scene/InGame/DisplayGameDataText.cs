@@ -19,7 +19,7 @@ public class DisplayGameDataText : MonoBehaviour
     {
         await UniTask.WaitUntil(() => GameManager.Instance != null);
         GameManager.Instance.OnUpdateGameData.AddListener(Display);
-        Display(GameManager.Instance.GameData);
+        Display(GameManager.Instance.SaveDataManager.Data);
     }
 
     private void OnDisable()
@@ -27,7 +27,7 @@ public class DisplayGameDataText : MonoBehaviour
         GameManager.Instance.OnUpdateGameData.RemoveListener(Display);
     }
 
-    public void Display(GameData data)
+    public void Display(SaveData data)
     {
         switch (_type)
         {

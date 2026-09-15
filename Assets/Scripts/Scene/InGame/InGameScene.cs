@@ -29,8 +29,17 @@ public partial class InGameScene : SceneBase
         {
             // 最初は暗転状態で開始
             FadeManager.Instance.FadeOut(0f);
-            // ロードがないので即座に画面表示ステートへ遷移
-            _stateMachine.ChangeState<EnterState>();
+            // ネットワーク接続
+            GameManager.Instance.NetworkManager.Connect();
+        }
+
+        public override void OnUpdate()
+        {
+            // 入室に成功したら画面表示ステートへ遷移
+            if (GameManager.Instance.NetworkManager.State == NetworkManager.NetworkState.JoinedRoom)
+            {
+                _stateMachine.ChangeState<EnterState>();
+            }
         }
     }
 
