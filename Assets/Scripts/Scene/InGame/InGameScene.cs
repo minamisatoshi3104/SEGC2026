@@ -38,6 +38,12 @@ public partial class InGameScene : SceneBase
             // 入室に成功したら画面表示ステートへ遷移
             if (GameManager.Instance.NetworkManager.State == NetworkManager.NetworkState.JoinedRoom)
             {
+                DialogManager.Instance.Open(new DialogManager.Option()
+                {
+                    Type = DialogManager.DialogType.Time,
+                    Title = "入室成功",
+                    Content = "入室に成功しました。"
+                });
                 _stateMachine.ChangeState<EnterState>();
             }
         }

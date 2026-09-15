@@ -22,8 +22,7 @@ public partial class InGameScene
             // 接続が切れたらタイトルへ戻る
             if (GameManager.Instance.NetworkManager.State == NetworkManager.NetworkState.Disconnected)
             {
-                GameManager.Instance.SetNextScene("Title");
-                _stateMachine.ChangeState<ExitState>();
+                _stateMachine.ChangeState<ViewDialogState>();
             }
             // ステート変更
             var scene = _stateMachine.Owner as InGameScene;
@@ -42,6 +41,27 @@ public partial class InGameScene
 
         public override void OnExit()
         {
+        }
+    }
+
+    /// <summary>
+    /// ダイアログ表示ステート
+    /// </summary>
+    public class ViewDialogState : StateBase
+    {
+        public override void OnEnter()
+        {
+            DialogManager.Instance.Open(new DialogManager.Option()
+            {
+                Type = DialogManager.DialogType.OK,
+                Title = "接続切断",
+                Content = "接続が切断されました。\nタイトルへ戻ります。",
+                Callback = (result) =>
+                {
+                    GameManager.Instance.SetNextScene("Title");
+                    _stateMachine.ChangeState<ExitState>();
+                }
+            });
         }
     }
 }

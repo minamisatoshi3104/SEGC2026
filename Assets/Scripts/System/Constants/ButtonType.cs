@@ -10,6 +10,7 @@ namespace ZZ
         [InspectorName("Common/Yes")] Common_Yes = 1,
         [InspectorName("Common/No")] Common_No = 2,
         [InspectorName("Common/Close")] Common_Close = 3,
+        [InspectorName("Common/OK")] Common_OK = 4,
         [InspectorName("Common/Option")] Common_Option = 10,
 
         // タイトル
