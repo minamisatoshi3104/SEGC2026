@@ -1,0 +1,56 @@
+# Matte clay materials for OVERBUILD
+newmtl ClayCream
+Kd 0.8200 0.5500 0.3200
+Ka 0.0600 0.0600 0.0600
+Ks 0.0350 0.0350 0.0350
+Ns 8.0
+d 1.0000
+illum 2
+
+newmtl ClayWood
+Kd 0.3400 0.1400 0.0650
+Ka 0.0600 0.0600 0.0600
+Ks 0.0350 0.0350 0.0350
+Ns 8.0
+d 1.0000
+illum 2
+
+newmtl ClayWoodLight
+Kd 0.5500 0.2700 0.1100
+Ka 0.0600 0.0600 0.0600
+Ks 0.0350 0.0350 0.0350
+Ns 8.0
+d 1.0000
+illum 2
+
+newmtl ClayRoof
+Kd 0.6600 0.1200 0.0800
+Ka 0.0600 0.0600 0.0600
+Ks 0.0350 0.0350 0.0350
+Ns 8.0
+d 1.0000
+illum 2
+
+newmtl ClayBlue
+Kd 0.1200 0.4500 0.6200
+Ka 0.0600 0.0600 0.0600
+Ks 0.0350 0.0350 0.0350
+Ns 8.0
+d 0.7800
+illum 2
+
+newmtl ClayDark
+Kd 0.0800 0.0550 0.0450
+Ka 0.0600 0.0600 0.0600
+Ks 0.0350 0.0350 0.0350
+Ns 8.0
+d 1.0000
+illum 2
+
+newmtl ClayGreen
+Kd 0.1900 0.4200 0.2400
+Ka 0.0600 0.0600 0.0600
+Ks 0.0350 0.0350 0.0350
+Ns 8.0
+d 1.0000
+illum 2
