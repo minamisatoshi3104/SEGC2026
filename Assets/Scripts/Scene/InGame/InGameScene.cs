@@ -1,4 +1,6 @@
 using Game;
+using Photon.Pun;
+using Unity.Cinemachine;
 using UnityEngine;
 
 /// <summary>
@@ -13,6 +15,8 @@ public partial class InGameScene : SceneBase
         MenuClose,
         ToMapSelect,
     }
+
+    [SerializeField] private CinemachineCamera _playerCamera;   // プレイヤーカメラ
 
     void Start()
     {
@@ -35,15 +39,23 @@ public partial class InGameScene : SceneBase
 
         public override void OnUpdate()
         {
+            var scene = _stateMachine.Owner as InGameScene;
             // 入室に成功したら画面表示ステートへ遷移
             if (GameManager.Instance.NetworkManager.State == NetworkManager.NetworkState.JoinedRoom)
             {
+                // プレイヤーを生成
+                var position = new Vector3(Random.Range(-3f, 3f), 0.5f, Random.Range(-3f, 3f));
+                var player = PhotonNetwork.Instantiate("Player", position, Quaternion.identity);
+                // カメラのターゲットをプレイヤーに設定
+                scene._playerCamera.Follow = player.transform;
+                // 入室成功ダイアログを表示
                 DialogManager.Instance.Open(new DialogManager.Option()
                 {
                     Type = DialogManager.DialogType.Time,
                     Title = "入室成功",
                     Content = "入室に成功しました。"
                 });
+                // 画面表示ステートへ遷移
                 _stateMachine.ChangeState<EnterState>();
             }
         }

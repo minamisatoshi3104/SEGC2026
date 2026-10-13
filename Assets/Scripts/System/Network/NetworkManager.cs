@@ -52,9 +52,5 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         // 入室完了
         State = NetworkState.JoinedRoom;
-        //Playerを生成する座量をランダムに決める
-        var position = new Vector3(Random.Range(-3f, 3f), 0.5f, Random.Range(-3f, 3f));
-        //Resourcesフォルダから"Player"を探してきてそれを生成
-        PhotonNetwork.Instantiate("Player", position, Quaternion.identity);
     }
 }
