@@ -17,11 +17,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
         Jamp,
     }
 
+    private const float WALK_SPEED = 5f;    // 移動速度
+    private const float SPRINT_SPEED = 10f;   // ダッシュ速度
+
+    private const float ROTATION_LERP_RATE = 0.3f;  // 回転補間率
+
     private readonly int AnimHashTriggerJamp = Animator.StringToHash("Jamp");
 
-    [SerializeField] private float _forceRate = 1f; // 加速度の倍率
+    private InputAction _move;      // 移動
+    private InputAction _sprint;    // ダッシュ
 
-    private InputAction _move; // 移動
     private Animator _animator;    // アニメーター
     private Rigidbody _rigidbody;
 
@@ -30,6 +35,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         _move = InputSystem.actions.FindAction("Move");
+        _sprint = InputSystem.actions.FindAction("Sprint");
     }
 
     void Start()
@@ -38,22 +44,32 @@ public class PlayerController : MonoBehaviourPunCallbacks
         _rigidbody = GetComponent<Rigidbody>();    
     }
 
-    private void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
         _move?.Enable();
+        _sprint?.Enable();
     }
 
-    private void OnDisable()
+    public override void OnDisable()
     {
+        base.OnDisable();
         _move?.Disable();
+        _sprint?.Disable();
     }
 
     void Update()
     {
-        if (_move != null && photonView.IsMine)
+        // 自分のプレイヤーのみ操作可能
+        if (photonView.IsMine)
         {
-            Vector2 value = _move.ReadValue<Vector2>();
-            Move(value);
+            // 移動
+            Vector2 moveDir = _move.ReadValue<Vector2>();
+            bool isSprint = _sprint.ReadValue<float>() > 0f;
+            if (moveDir != Vector2.zero)
+            {
+                Move(moveDir, isSprint);
+            }
         }
     }
 
@@ -61,10 +77,15 @@ public class PlayerController : MonoBehaviourPunCallbacks
     /// 移動
     /// </summary>
     /// <param name="value"></param>
-    public void Move(Vector2 value)
+    /// <param name="isSprint"></param>
+    public void Move(Vector2 value, bool isSprint)
     {
-        value *= _forceRate;
-        _rigidbody.AddForce(new Vector3(value.x, 0f, value.y));
+        // 移動
+        float speed = isSprint ? SPRINT_SPEED : WALK_SPEED;
+        _rigidbody.linearVelocity = new Vector3(value.x, 0f, value.y) * speed;
+        // 回転
+        Quaternion rotation = Quaternion.LookRotation(new Vector3(value.x, 0f, value.y));
+        _rigidbody.transform.rotation = Quaternion.Lerp(_rigidbody.transform.rotation.normalized, rotation, ROTATION_LERP_RATE);
     }
 
     /// <summary>
