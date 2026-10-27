@@ -1,0 +1,37 @@
+fileFormatVersion: 2
+guid: 10962efb0a615255a0679bdf6cc83849
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lumber_Side
+    second: {fileID: 2100000, guid: 45dd51e2d1035e97b9ddc53b2c3a3b32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lumber_End
+    second: {fileID: 2100000, guid: 937921748f5c52e4ae9edd2b154c4486, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lumber_Edge
+    second: {fileID: 2100000, guid: 81dff9319db55f6a8ff1097036aa6679, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  meshes:
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useFileScale: 1
+    isReadable: 0
+    importBlendShapes: 0
+  importAnimation: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

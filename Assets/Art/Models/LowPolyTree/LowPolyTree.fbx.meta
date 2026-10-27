@@ -1,0 +1,37 @@
+fileFormatVersion: 2
+guid: 75dcc9b934bd5bc5b7eaf1f4fd715d13
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree_Bark
+    second: {fileID: 2100000, guid: 9f5d219a65865a9295a48f12bc3b7823, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree_LeavesLight
+    second: {fileID: 2100000, guid: 9feb5fe7e5985d48a9f9f18fbec39784, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree_Leaves
+    second: {fileID: 2100000, guid: 6a0e133d5af15d7fb11996a74a0cc515, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  meshes:
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useFileScale: 1
+    isReadable: 0
+    importBlendShapes: 0
+  importAnimation: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:
